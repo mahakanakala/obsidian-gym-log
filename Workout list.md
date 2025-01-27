@@ -1,7 +1,7 @@
 ```button
 name Add workout
 type command
-action QuickAdd: Add workout
+action QuickAdd: AddWorkout
 color green
 ```
 ^button-wf7a

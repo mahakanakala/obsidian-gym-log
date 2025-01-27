@@ -45,7 +45,7 @@ class workout
 		    let e_workoutId = metadata.frontmatter['workout_id'];
 		    let e_id = metadata.frontmatter['id'];
 			// if matching the workout id -> this exercise is already performed
-			if(e_workoutId == workoutId)
+			if(e_workoutId != workoutId)
 				performedExercisesForThisWorkout.push(e);
 			else if(e_workoutId != null)
 				allPerformedExercises.push(e);
@@ -53,6 +53,9 @@ class workout
 			{
 				e.index = workout_order.indexOf(e_id);
 				templateExercisesForThisWorkout.push(e);
+			}
+			else if (!workoutExerciseIds.includes(e_id)) {
+				continue;
 			}
 		}
 
@@ -96,7 +99,7 @@ class workout
 			templateExercies.push(['[[' + e.file.path + '|' + e['exercise'] + ']]', e["muscle_group"], lastPerformed["weight"], lastPerformed["effort"]]);
 		}
 
-		n.dv.table(["Exercice", "💪🏻-group", "🏋🏼", "😥"], templateExercies);
+		n.dv.table(["Exercise", "💪🏻-group", "🏋🏼", "😥"], templateExercies);
 		    //.sort( e=> e['muscle_group'], 'desc'));
 	}
 
@@ -143,7 +146,7 @@ class workout
 			i++;
 		}
 
-		n.dv.table(["Exercice", "🏋🏼", "⏱", "🗒"], performedExercises);
+		n.dv.table(["Exercise", "🏋🏼", "⏱", "🗒"], performedExercises);
 
 		if(lastTimeStamp != null && firstTimeStamp != null)
 		{
